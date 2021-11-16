@@ -2,4 +2,4 @@
 
 
 Game game = new();
-game.Start();
+game.ShowMenu();

@@ -9,23 +9,37 @@ namespace ChasingTheDollars
     internal class Menu
     {
         private int _selectedIndex;
-        private string[] Options { get; set; }
-        private string Promt { get; set; }
+        private string[] _options;
+        private string _bannerGame;
 
-        public Menu(string promt, string[] options)
+
+        public Menu()
         {
-            Promt = promt;
-            Options = options;
+            _bannerGame = @"
+ _______ _                _                _______ _              ______       _ _                  
+(_______) |              (_)              (_______) |            (______)     | | |                 
+ _      | |__  _____  ___ _ ____   ____       _   | |__  _____    _     _ ___ | | | _____  ____ ___ 
+| |     |  _ \(____ |/___) |  _ \ / _  |     | |  |  _ \| ___ |  | |   | / _ \| | |(____ |/ ___)___)
+| |_____| | | / ___ |___ | | | | ( (_| |     | |  | | | | ____|  | |__/ / |_| | | |/ ___ | |  |___ |
+ \______)_| |_\_____(___/|_|_| |_|\___ |     |_|  |_| |_|_____)  |_____/ \___/ \_)_)_____|_|  (___/ 
+                                 (_____|                                                            
+
+
+Welcome to Chasing The Dollars!!!
+
+Press enter to select option:
+";
+            _options = new string []{ "Play", "Score", "Exit" }; 
             _selectedIndex = 0;
         }
+
         private void DisplayOptions()
         {
-            Console.WriteLine(Promt);
+            Console.WriteLine(_bannerGame);
             
-
-            for (int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < _options.Length; i++)
             {
-                string currentOption = Options[i];
+                string currentOption = _options[i];
                 string prefix;
 
                 if (i == _selectedIndex)
@@ -63,13 +77,13 @@ namespace ChasingTheDollars
                     _selectedIndex--;
                     if(_selectedIndex == -1)
                     {
-                        _selectedIndex = Options.Length - 1;
+                        _selectedIndex = _options.Length - 1;
                     }
                 }
                 else if (keyPressed == ConsoleKey.DownArrow)
                 {
                     _selectedIndex++;
-                    if (_selectedIndex == Options.Length)
+                    if (_selectedIndex == _options.Length)
                     {
                         _selectedIndex = 0;
                     }
